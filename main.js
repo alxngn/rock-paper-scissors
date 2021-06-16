@@ -1,29 +1,47 @@
 const rock = 'rock',
     paper = 'paper',
-    scissors = 'scissors';
-const plays = {
-    rock: 'rock',
-    paper: 'paper',
-    scissors: 'scissors'
-};
+    scissors = 'scissors',
+    cancel = 'canceled';
 
-// const computer = computerPlay();
-// let player = prompt("Enter your play:").trim().toLowerCase();
+game();
 
-// console.log("You played: " + player);
-// console.log("Computer played: " + computer);
-
-// console.log(playRound(player, computer));
-
-for (let i = 0; i < 5; i++) {
-    const computer = computerPlay();
-    let player = prompt("Enter your play:").trim().toLowerCase();
-
-    console.log("You played: " + player);
-    console.log("Computer played: " + computer);
-    console.log(playRound(player, computer));
+function game() {
+    // looping 5 times
+    for (let i = 0; i < 5; i++) {
+        const computer = computerPlay();
+        let player = userPlay();
+        
+        if (player !== cancel) {
+            console.log("You played: " + player);
+            console.log("Computer played: " + computer);
+            alert("Computer played: " + computer + '\n' + playRound(player, computer));
+        } else {
+            break;
+        }
+        
+        console.log(playRound(player, computer));
+    }
 }
 
+function userPlay() {
+    const plays = [ rock, paper, scissors ];
+
+    // case-insensitive
+    let raw = prompt("Enter your play:");
+
+    // check if user enters correctly
+    if (raw == null) {
+        alert("You've canceled!");
+        console.log('User canceled!');
+        return cancel;
+    } else if (plays.includes(raw.trim().toLowerCase())) {
+        let play = raw.trim().toLowerCase();
+        return play;
+    } else {
+        alert("Please enter a correct play!");
+        return userPlay();
+    }
+}
 
 function computerPlay() {
     switch (Math.floor(Math.random() * 9) + 1) {
@@ -90,9 +108,12 @@ function playRound(playerSelection, computerSelection) {
                         break;
                 }
                 break;
+
+            case cancel: // user press escape
+                message = 'User canceled!';
         }
     } else {
-        message = "It's a draw. Let's play again!";
+        message = "It's a draw. Everybody's a winner!";
     }
 
     return message;
