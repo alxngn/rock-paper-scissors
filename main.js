@@ -2,11 +2,14 @@ const rock = 'rock',
     paper = 'paper',
     scissors = 'scissors';
 
-//const computerSelection = computerPlay();
-//let playerSelection = prompt("Enter your play:").trim().toLowerCase();
+const computer = computerPlay();
+let player = prompt("Enter your play:").trim().toLowerCase();
 //console.log(playerSelection);
 
-console.log(playRound(rock, paper));
+console.log(player);
+console.log(computer);
+
+console.log(playRound(player, computer));
 
 
 function computerPlay() {
@@ -27,7 +30,7 @@ function computerPlay() {
             play = scissors;
             break;
     }
-    console.log(play);
+
     return play;
 }
 
@@ -35,20 +38,44 @@ function playRound(playerSelection, computerSelection) {
     let message;
     let lose = "You Lose!";
     let win = "You Win!";
-    let pvr = " Paper beats Rock";
+    let pbr = " Paper beats Rock.";
+    let sbp = " Scissors beat Paper.";
+    let rbs = " Rock beats Scissors.";
 
     if (playerSelection != computerSelection) {
         switch(playerSelection) {
+
             case rock: // user plays rock
                 switch(computerSelection) {
                     case paper:
-                        message = lose + pvr;
+                        message = lose + pbr;
+                        break;
+                    case scissors:
+                        message = win + rbs;
                         break;
                 }
+                break;
 
             case paper: // user plays paper
+                switch(computerSelection) {
+                    case rock:
+                        message = win + pbr;
+                        break;
+                    case scissors:
+                        message = lose + sbp;
+                        break;
+                }
                 break;
-            case scissors:
+
+            case scissors: // user plays scissors
+                switch(computerSelection) {
+                    case paper:
+                        message = win + sbp;
+                        break;
+                    case rock:
+                        message = lose + rbs;
+                        break;
+                }
                 break;
         }
     } else {
