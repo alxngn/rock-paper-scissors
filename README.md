@@ -1,5 +1,6 @@
 # The Odin Project
 ## Project: Rock Paper Scissors
 
-### Initial setup
-- Blank HTML file
+### What's new?
+- Main current version of the project
+- GUI will be added later
