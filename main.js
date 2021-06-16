@@ -2,8 +2,9 @@ const rock = 'rock',
     paper = 'paper',
     scissors = 'scissors',
     cancel = 'canceled';
+const button = document.querySelector('button');
 
-game();
+button.onclick = () => game();
 
 function game() {
     // looping 5 times
@@ -12,9 +13,8 @@ function game() {
         let player = userPlay();
         
         if (player !== cancel) {
-            console.log("You played: " + player);
-            console.log("Computer played: " + computer);
-            alert("Computer played: " + computer + '\n' + playRound(player, computer));
+            console.log(`You played: ${player} and Computer played: ${computer}`);
+            // alert("Computer played: " + computer + '\n' + playRound(player, computer));
         } else {
             break;
         }
