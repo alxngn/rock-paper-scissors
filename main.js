@@ -1,15 +1,28 @@
 const rock = 'rock',
     paper = 'paper',
     scissors = 'scissors';
+const plays = {
+    rock: 'rock',
+    paper: 'paper',
+    scissors: 'scissors'
+};
 
-const computer = computerPlay();
-let player = prompt("Enter your play:").trim().toLowerCase();
-//console.log(playerSelection);
+// const computer = computerPlay();
+// let player = prompt("Enter your play:").trim().toLowerCase();
 
-console.log(player);
-console.log(computer);
+// console.log("You played: " + player);
+// console.log("Computer played: " + computer);
 
-console.log(playRound(player, computer));
+// console.log(playRound(player, computer));
+
+for (let i = 0; i < 5; i++) {
+    const computer = computerPlay();
+    let player = prompt("Enter your play:").trim().toLowerCase();
+
+    console.log("You played: " + player);
+    console.log("Computer played: " + computer);
+    console.log(playRound(player, computer));
+}
 
 
 function computerPlay() {
