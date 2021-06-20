@@ -1,26 +1,51 @@
 const rock = 'rock',
     paper = 'paper',
-    scissors = 'scissors',
-    cancel = 'canceled';
-const button = document.querySelector('button');
+    scissors = 'scissors';
+let usrWin = 0,
+    comWin = 0;
+const buttons = document.querySelectorAll('button[type="play"]');
+const reset = document.querySelector('#reset');
 
-button.onclick = () => game();
+buttons.forEach(button => button.addEventListener('click', playGame));
+reset.addEventListener('click', () => {
+    window.location.reload(true);
+});
 
-function game() {
-    // looping 5 times
-    for (let i = 0; i < 5; i++) {
-        const computer = computerPlay();
-        let player = userPlay();
-        
-        if (player !== cancel) {
-            console.log(`You played: ${player} and Computer played: ${computer}`);
-            // alert("Computer played: " + computer + '\n' + playRound(player, computer));
-        } else {
-            break;
-        }
-        
-        console.log(playRound(player, computer));
+function playGame(e) {
+
+    const div = document.querySelector('#result');
+    const usrScore = document.querySelector('#usrScore');
+    const comScore = document.querySelector('#comScore');
+    div.setAttribute('style', 'white-space: pre;');
+
+    div.textContent += '\r\n' + game(e.srcElement.id);  
+    score(usrScore,comScore);
+    
+    anounceWinner(div);
+}
+
+function score(usr,com) {
+    usr.textContent = usrWin;
+    com.textContent = comWin;
+}
+
+function anounceWinner(para) {
+
+    if (usrWin == 5 && comWin < 5) {
+        para.textContent = "\r\nYou've won the game. Congratulations!!!";
+    } else if (comWin == 5 && usrWin < 5) {
+        para.textContent = "\r\nYou've lost the game. Computer won. Better luck next time.";
     }
+}
+
+
+function game(choice) {
+    const computer = computerPlay();
+    let player = choice;
+
+    let result = `Computer played ${computer}. ` + playRound(player, computer);
+
+    return result;
 }
 
 function userPlay() {
@@ -44,25 +69,23 @@ function userPlay() {
 }
 
 function computerPlay() {
-    switch (Math.floor(Math.random() * 9) + 1) {
+    switch (Math.floor(Math.random() * 3) + 1) {
         case 1:
         case 4:
-        case 7:
-            play = rock;
+        case 9:
+            return rock;
             break;
         case 2:
         case 5:
         case 8:
-            play = paper;
+            return paper;
             break;
         case 3:
         case 6:
-        case 9:
-            play = scissors;
+        case 7:
+            return scissors;
             break;
     }
-
-    return play;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -80,9 +103,11 @@ function playRound(playerSelection, computerSelection) {
                 switch(computerSelection) {
                     case paper:
                         message = lose + pbr;
+                        comWin += 1;
                         break;
                     case scissors:
                         message = win + rbs;
+                        usrWin += 1;
                         break;
                 }
                 break;
@@ -91,9 +116,11 @@ function playRound(playerSelection, computerSelection) {
                 switch(computerSelection) {
                     case rock:
                         message = win + pbr;
+                        usrWin += 1;
                         break;
                     case scissors:
                         message = lose + sbp;
+                        comWin += 1;
                         break;
                 }
                 break;
@@ -102,9 +129,11 @@ function playRound(playerSelection, computerSelection) {
                 switch(computerSelection) {
                     case paper:
                         message = win + sbp;
+                        usrWin += 1;
                         break;
                     case rock:
                         message = lose + rbs;
+                        comWin += 1;
                         break;
                 }
                 break;
