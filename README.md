@@ -3,4 +3,4 @@
 
 ### What's new?
 - Main current version of the project
-- GUI version with buttons
+- Graphical buttons. Announce winner after 5 wins
