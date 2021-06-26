@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Rock-Paper-Scissors</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
     <h1>Open console to play this game</h1>
     <h3>Choose your play or <a id="reset">reset</a> the game.</h3>
+    <!--
     <button type="play" id="rock">Rock</button>
     <button type="play" id="paper">Paper</button>
     <button type="play" id="scissors">Scissors</button>
     <div id="container">
     <div id="result"></div>
+-->
+
+<div id="container" class="container">
+    <div id="page-wrap" class="page-wrap">
+
+    <div class="plays">
+        <button id="rock" class="play">
+            <span class="symbols"><img class="icons" src="https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/72x72/1FAA8.png"></span>
+            <span class="sound">Rock</span>
+        </button>
+        <button id="paper" class="play">
+            <span class="symbols"><img class="icons" src="https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/72x72/1F4C4.png"></span>
+            <span class="sound">Paper</span>
+        </button>
+        <button id="scissors" class="play">
+            <span class="symbols"><img class="icons" src="https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/72x72/2702.png"></span>
+            <span class="sound">Scissors</span>
+        </button>
+    </div>
+
     <div id="score">
-    	<span id="usrScore"></span>
-    	<span id="comScore"></span>
-    </div></div>
-<script src="main.js" type="text/javascript"></script>
+        <span id="usrScore"></span>
+        <span id="comScore"></span>
+    
+    <div id="result"></div>
+    </div>
+
+    <script src="main.js" type="text/javascript"></script>
+</div></div>
 </body>
+
 </html>

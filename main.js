@@ -1,9 +1,36 @@
+// 
+
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    //const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`button[class="${e.keyCode}"]`);
+ // if (!audio) return;
+    console.log(e.keyCode);
+    key.classList.add('playing');
+/*    audio.currentTime = 0;
+    audio.play();
+*/
+  }
+/*
+  const keys = Array.from(document.querySelectorAll('.play'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+  window.addEventListener('keydown', playSound);
+*/
+//
+
+
 const rock = 'rock',
     paper = 'paper',
-    scissors = 'scissors';
+    scissors = 'scissors',
+    cancel = 'canceled';
 let usrWin = 0,
     comWin = 0;
-const buttons = document.querySelectorAll('button[type="play"]');
+const buttons = document.querySelectorAll('button[class="play"]');
 const reset = document.querySelector('#reset');
 
 buttons.forEach(button => button.addEventListener('click', playGame));
@@ -16,7 +43,6 @@ function playGame(e) {
     const div = document.querySelector('#result');
     const usrScore = document.querySelector('#usrScore');
     const comScore = document.querySelector('#comScore');
-    div.setAttribute('style', 'white-space: pre;');
 
     div.textContent += '\r\n' + game(e.srcElement.id);  
     score(usrScore,comScore);
